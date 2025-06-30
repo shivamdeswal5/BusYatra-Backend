@@ -61,6 +61,23 @@ export class UserService {
     return rest;
   }
 
+  async getUserById(id: string) {
+    const user = await this.userRepository.findOne({
+      where: { id: id },
+      relations: ['busOwner', 'busOwner.rides']
+    })
+
+    console.log("User in getUserById: ", user);
+
+    if (!user) {
+      throw new NotFoundException(`User with id ${id} not found`);
+    }
+
+    return {
+      message: 'user with buses',
+      user
+    }
+  }
 
 
 }

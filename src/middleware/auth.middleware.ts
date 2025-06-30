@@ -11,7 +11,7 @@ export class AuthMiddleware {
 
   use(req: Request, res: Response, next: NextFunction) {
 
-    const publicPaths = ['/auth/login', '/auth/signup','/auth/request-otp'];
+    const publicPaths = ['/auth/login', '/auth/signup','/auth/request-otp','/users/:id'];
     if (publicPaths.includes(req.path)) {
       return next();
     }
